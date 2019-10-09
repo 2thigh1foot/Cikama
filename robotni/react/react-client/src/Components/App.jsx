@@ -6,12 +6,9 @@ import NavBar from './HeaderComponent/NavBar';
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div>
-          <NavBar />
-          <Route name="home" exact path="/" component={HomePage} />
-        </div>
-      </Router>
+      <div>
+          <Login onSubmit={console.log("SUBMIT")} /> //modified 
+      </div>
     )
   }
 }
