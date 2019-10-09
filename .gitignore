@@ -11,3 +11,5 @@ package-lock.json
 .DS_Store
 .ds_store
 .DS_STORE
+
+__pycache__
