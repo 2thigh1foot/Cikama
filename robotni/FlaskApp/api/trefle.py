@@ -10,9 +10,8 @@ headers = {'Content-Type' : 'application/json',
 
 def get_account_info():
 
-    api_url = f'{base_url}plants/258628'
-    params = {'page_size': 10,
-              'page' : 5
+    api_url = f'{base_url}plants/'
+    params = {'common_name': 'rose'
              }
 
     response = requests.get(api_url, headers=headers, params=params)
