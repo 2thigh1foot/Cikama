@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import HomepageImage from './components/HomepageImage'
+import HomepageImage from './components/HomepageImage' // need this for line 10's reference 
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
         <p>
           Robotni
 
-        </p>
+        </p> 
         <a
           className="App-link"
           href="https://reactjs.org"
