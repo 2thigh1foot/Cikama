@@ -1,3 +1,8 @@
+"""
+This raises Exception errors if the API key is missing.
+It then starts a session using the API key. 
+"""
+
 import requests
 import apiconfig
 
