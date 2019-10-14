@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { Component }  from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './index.css';
-import App from './App';
-import Error from './Error';
 import * as serviceWorker from './serviceWorker';
+
+// Custom components
+import App from './App';
+import Login from './Login';
+import Error from './Error';
 
 ReactDOM.render(
   <Router>
       <div>
-        <Route exact path="/" component={App} />
-        <Route path="/login" component={App} />
-        <Route path="/*" component={Error} />
-      </div>
+      	<Switch>	
+	        <Route path="/" exact component={App} />
+	        <Route path="/login" component={Login} />
+			<Route component={Error} />      
+		</Switch>
+	  </div>
   </Router>,
   document.getElementById('root')
 )

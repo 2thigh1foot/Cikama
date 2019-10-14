@@ -1,6 +1,7 @@
-import React from 'react';
 import './App.css';
 import HomepageImage from './components/HomepageImage' // need this for line 10's reference 
+import React, { Component }  from 'react';
+
 
 function App() {
   return (
