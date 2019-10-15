@@ -1,6 +1,5 @@
 import json
 import requests
-import apiconfig
 
 
 class OWM(object):
