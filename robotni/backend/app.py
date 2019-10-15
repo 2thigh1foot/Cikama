@@ -7,10 +7,11 @@ app.config["MONGO_URI"] = "mongodb+srv://kemery:sunnypool@robotni-free-jvqvi.mon
 mongo = PyMongo(app)
 
 # help(mongo.db.create_collection)
-mongo.db.create_collection('Users')
+# mongo.db.create_collection('Users')
 for a in dir(mongo.db):
     print (a)
 
+help 
 @app.route("/")
 def home_page():
     print (dir(mongo.db))
