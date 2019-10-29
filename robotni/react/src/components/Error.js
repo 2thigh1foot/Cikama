@@ -1,6 +1,5 @@
 import React from 'react';
-import './App.css';
-import HomepageImage from './components/HomepageImage' // need this for line 10's reference 
+import HomepageImage from './HomepageImage' // need this for line 10's reference 
 
 function App() {
   return (

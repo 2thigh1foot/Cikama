@@ -1,13 +1,17 @@
+import './index.css';
 import React, { Component }  from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './index.css';
+
+import App from './App';
+
+import Error from './components/Error';
+import Signup from './components/Signup';
+import Login from './components/Login';
+
 import * as serviceWorker from './serviceWorker';
 
-// Custom components
-import App from './App';
-import Login from './Login';
-import Error from './Error';
+
 
 ReactDOM.render(
   <Router>
@@ -15,6 +19,7 @@ ReactDOM.render(
       	<Switch>	
 	        <Route path="/" exact component={App} />
 	        <Route path="/login" component={Login} />
+	        <Route path="/signup" component={Signup} />
 			<Route component={Error} />      
 		</Switch>
 	  </div>

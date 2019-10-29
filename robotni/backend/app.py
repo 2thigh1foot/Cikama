@@ -11,7 +11,7 @@ mongo = PyMongo(app)
 for a in dir(mongo.db):
     print (a)
 
-help 
+
 @app.route("/")
 def home_page():
     print (dir(mongo.db))
