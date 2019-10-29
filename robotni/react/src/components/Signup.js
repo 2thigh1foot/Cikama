@@ -1,8 +1,9 @@
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React, { Component }  from 'react';
+import { Input } from '@material-ui/core';
+import { FormLabel } from '@material-ui/core';
 
 class Login extends Component {
 
@@ -48,34 +49,8 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <MuiThemeProvider>
-          <div>
-          <AppBar
-             title="Sign Up"
-           />
-           <TextField
-             hintText="Username"
-             floatingLabelText="Choose a Username"
-             onChange = {(event,newValue) => this.setState({username:newValue})}
-             />
-           <br/>
-           <TextField
-             type="password"
-             hintText="Password"
-             floatingLabelText="Set your Password"
-             onChange = {(event,newValue) => this.setState({password:newValue})}
-             />
-           <br/>
-           <TextField
-             type="password"
-             hintText="Password"
-             floatingLabelText="Confirm Password"
-             onChange = {(event,newValue) => this.setState({password:newValue})}
-             />
-           <br/>
-           <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)}/>
-         </div>
-         </MuiThemeProvider>
+        <Input label="username" type="text" name="username" id="username" placeholder="Enter username"></Input>
+        <Input label="password" type="password" name="password" id="password" placeholder="Enter password"></Input>
       </div>
     );
   }

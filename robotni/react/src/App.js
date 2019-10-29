@@ -1,21 +1,52 @@
 import './App.css';
 import HomepageImage from './components/HomepageImage' // need this for line 10's reference 
 import React, { Component }  from 'react';
+import { Redirect } from 'react-router-dom'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-import Header from './components/Header';
+
+
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+  input: {
+    display: 'none',
+  },
+}));
+
+
+// Takes in the corresponding navigation element that we should 
+// direct to in our site
+const handleClick = nav_el => {
+	// nav_el
+	console.log(nav_el);
+	this.props.history.push(`/account`)
+}
 
 function App() {
+
+ 
+
+  const classes=useStyles();
   return (
     <div className="App">
-      <MuiThemeProvider>
-        <Header>
-        </Header>
-      </MuiThemeProvider>
+    <div class="centered">
+     <Button href='/signup' variant="contained" color="primary" className={classes.button} onClick={() => handleClick("Sign up")}>
+        Sign Up
+      </Button>
+      <Button href='/login' variant="contained" color="primary" className={classes.button} onClick={() => handleClick("Login")}>
+        Login
+      </Button>
+      </div>
     </div>
   );
 }

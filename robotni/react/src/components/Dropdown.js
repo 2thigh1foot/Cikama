@@ -44,9 +44,15 @@ const StyledMenuItem = withStyles(theme => ({
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-    console.log(event.currentTarget);
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
+    console.log(e);
+  };
+
+  const handleNav = e => {
+    // setAnchorEl(event.currentTarget);
+    // e.stopPropagation();
+    console.log(e);
   };
 
   const handleClose = () => {
@@ -71,25 +77,16 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem onClick="handleClick($event)">
-          <ListItemIcon>
-            <SendIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Sent mail" />
+        <StyledMenuItem>
+          <ListItemText onClick={handleNav()} primary="Plants" />
         </StyledMenuItem>
         
-        <StyledMenuItem onclick="handleClick($event)">
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
+        <StyledMenuItem onClick={handleNav()}>
+          <ListItemText primary="Account" />
         </StyledMenuItem>
         
-        <StyledMenuItem onclick="handleClick($event)">
-          <ListItemIcon>
-            <InboxIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
+        <StyledMenuItem onClick={handleNav()}>
+          <ListItemText primary="Log Out" />
         </StyledMenuItem>
       </StyledMenu>
     </div>

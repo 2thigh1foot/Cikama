@@ -8,18 +8,46 @@ import App from './App';
 import Error from './components/Error';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Account from './components/Account';
+import Plants from './components/Plants';
+import Header from './components/Header';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';  
 
 import * as serviceWorker from './serviceWorker';
+
+const theme = createMuiTheme({
+   palette: {
+      primary: {
+         light: '#fff',
+         main: '#00604a',
+         dark: '#000'
+      },
+      secondary: {
+        main: '#f44336',
+      },
+   },
+   typography: { 
+      useNextVariants: true
+   }
+});
+
 
 
 
 ReactDOM.render(
   <Router>
+  	  <MuiThemeProvider theme = { theme }>
+        <Header>
+        </Header>
+      </MuiThemeProvider>
       <div>
       	<Switch>	
 	        <Route path="/" exact component={App} />
 	        <Route path="/login" component={Login} />
 	        <Route path="/signup" component={Signup} />
+	        <Route path="/account" component={Account} />
+	        <Route path="/plants" component={Plants} />
 			<Route component={Error} />      
 		</Switch>
 	  </div>
