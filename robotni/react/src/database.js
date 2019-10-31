@@ -14,3 +14,11 @@ mongo.connect(url, {
     })
 
 const db = client.db('robotni')
+const users = db.collection('users')
+const plants = db.collection('plants')
+users.insert({name: 'test', password: 'test'}, (err, result) =>{
+
+})
+plants.insert({plantName: 'testTree'}, (err, result) =>{
+
+})
