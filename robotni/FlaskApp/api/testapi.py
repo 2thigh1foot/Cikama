@@ -14,7 +14,8 @@ if len(plant) != 0:
 else:
     print("Your plant couldn't be found")
 
-# Weather data testing
+# Weather data testing. We can only call for the same zip code 
+# every 10 minutes. Don't overuse please. 
 # weather = OWM(apiconfig.owm_token)
 # zip = input('Enter zip code: ')
 # weather_info = weather.get_weather_info(zip)
