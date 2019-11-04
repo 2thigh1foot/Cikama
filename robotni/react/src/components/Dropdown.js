@@ -10,6 +10,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 
+// Preloaded styles for drop down menu 
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -44,17 +45,21 @@ const StyledMenuItem = withStyles(theme => ({
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  // Triggers Menu Opening 
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
     console.log(e);
   };
 
+  // Handles Menu Item Clicks to navigate to corresponding pages
+  // TODO 
   const handleNav = e => {
     // setAnchorEl(event.currentTarget);
     // e.stopPropagation();
     console.log(e);
   };
 
+  //Triggers Drop Down Menu Close 
   const handleClose = () => {
     setAnchorEl(null);
   };

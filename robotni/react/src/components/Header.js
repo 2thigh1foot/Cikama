@@ -9,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import Dropdown from './Dropdown'
 
+// Preloaded Styles for Header Element
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,

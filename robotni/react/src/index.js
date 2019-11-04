@@ -16,6 +16,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import * as serviceWorker from './serviceWorker';
 
+// Sets a theme configuration object in a green shade
 const theme = createMuiTheme({
    palette: {
       primary: {
@@ -33,10 +34,9 @@ const theme = createMuiTheme({
 });
 
 
-
-
 ReactDOM.render(
   <Router>
+  	// theme from material UI 
   	  <MuiThemeProvider theme = { theme }>
         <Header>
         </Header>
