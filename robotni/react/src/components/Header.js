@@ -67,16 +67,18 @@ export default function SearchAppBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <AppBar position="static">
         <Toolbar>
          
          <Dropdown>
          </Dropdown>
          
+         <div class="centered" >
          <Typography className={classes.title} variant="h6" noWrap>
             Robotni
          </Typography>
+          </div>
 
 
           <div className={classes.search}>
