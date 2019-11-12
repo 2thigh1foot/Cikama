@@ -50,7 +50,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div class="centered">
+      <div className="centered">
         <p><Input label="email" type="text" name="email" id="email" placeholder="Enter email"></Input></p>
         <p><Input label="username" type="text" name="username" id="username" placeholder="Enter username"></Input></p>
         <p><Input label="password" type="text" name="password" id="password" placeholder="Enter password"></Input></p>

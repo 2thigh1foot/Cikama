@@ -74,7 +74,7 @@ export default function SearchAppBar() {
          <Dropdown>
          </Dropdown>
          
-         <div class="centered" >
+         <div className="centered" >
          <Typography className={classes.title} variant="h6" noWrap>
             Robotni
          </Typography>

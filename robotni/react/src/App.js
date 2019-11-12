@@ -46,6 +46,9 @@ function App() {
       <Button href='/login' variant="contained" color="primary" className={classes.button} onClick={() => handleClick("Login")}>
         Login
       </Button>
+      <Button href='/plants'variant="contained" color="primary" className={classes.button} onClick={() => handleClick("Plants")}>
+        Search for Plants
+      </Button>
       </div>
     </div>
   );

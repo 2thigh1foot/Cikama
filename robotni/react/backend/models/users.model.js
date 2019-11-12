@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-
+/**
+ * Layout of the users collection includes:
+ * a username,
+ * a password,
+ * a location (zip code),
+ * a set of the users plants
+ * 
+ * Currently only a username and password are required
+ */
 const userSchema = new Schema({
     username: {
         type: String,
