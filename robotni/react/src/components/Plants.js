@@ -2,11 +2,12 @@ import React, { Component }  from 'react';
 
 class Plants extends Component {
 	constructor(props){
-		state = {
+        super(props);
+		this.state = {
 			loading: true,
 			name: null,
 			value: null
-		};
+		}
 	}
 	handleChange(event){
 		this.setState({value: event.target.value});
