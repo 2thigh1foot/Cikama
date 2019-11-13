@@ -3,6 +3,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
 
 //This is a file that sets up the environment
 require('dotenv').config();
@@ -13,6 +14,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.urlencoded())
 
 //The initial connection to our Mongo Atlas server
 const uri = process.env.ATLAS_URI;
