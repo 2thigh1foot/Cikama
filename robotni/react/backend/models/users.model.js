@@ -34,11 +34,9 @@ const userSchema = new Schema({
         trim: true,
         minlength: 5
     },
-    password: {
+    password_hash: {
         type: String,
-        required: true,
-        unique: false,
-        minlength: 8
+        required: true
     },
     zipcode: {
         type: Number,

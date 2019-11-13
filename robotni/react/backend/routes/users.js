@@ -11,11 +11,9 @@ router.route('/').get((req, res) => {
 // at localhost:5000/routes/add we will try to create a new user
 router.route('/add').post((req, res) => {
     
-    console.log(req.body);
-
     const email = req.body.email;
     const username = req.body.username;
-    const password = req.body.password;
+    const password_hash = req.body.password_hash;
     const zipcode = Number(req.body.zipcode);
     const plants = [] // New users have no plants
     
@@ -23,12 +21,12 @@ router.route('/add').post((req, res) => {
     // Server side logging
     console.log('EMAIL: ' + email);
     console.log('USERNAME: ' + username);
-    console.log('PASSWORD: ' + password);
+    console.log('PASSWORD HASH: ' + password_hash);
     console.log('ZIPCODE: ' + zipcode);
     console.log('PLANTS ARRAY: ' + plants);
 
 
-    const newUser = new User({email, username, password, zipcode, plants});
+    const newUser = new User({email, username, password_hash, zipcode, plants});
 
     newUser.save()
         .then(() => res.json('User added!'))
