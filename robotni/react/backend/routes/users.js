@@ -13,21 +13,22 @@ router.route('/add').post((req, res) => {
     
     console.log(req.body);
 
+    const email = req.body.email;
     const username = req.body.username;
     const password = req.body.password;
-    const location = Number(req.body.location);
-    const plants = Array(['hi'])
-    // req.body.plants;
+    const zipcode = Number(req.body.zipcode);
+    const plants = [] // New users have no plants
     
 
     // Server side logging
+    console.log('EMAIL: ' + email);
     console.log('USERNAME: ' + username);
     console.log('PASSWORD: ' + password);
-    console.log('LOCATION: ' + location);
+    console.log('ZIPCODE: ' + zipcode);
     console.log('PLANTS ARRAY: ' + plants);
 
 
-    const newUser = new User({username, password, location, plants});
+    const newUser = new User({email, username, password, zipcode, plants});
 
     newUser.save()
         .then(() => res.json('User added!'))
