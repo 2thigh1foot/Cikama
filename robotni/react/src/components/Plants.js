@@ -2,12 +2,12 @@ import React, { Component }  from 'react';
 
 class Plants extends Component {
 	constructor(props){
-		super(props);
+        super(props);
 		this.state = {
 			loading: true,
 			name: null,
 			value: null
-		};
+		}
 	}
 	//This is will update the state of what text is in the textbox
 	handleChange(event){
