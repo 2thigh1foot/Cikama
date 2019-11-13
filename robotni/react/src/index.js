@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Account from './components/Account';
 import Plants from './components/Plants';
 import Header from './components/Header';
+import Zipcode from './components/Zipcode';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';  
 
@@ -36,6 +37,7 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <Router>
+  	// theme from material UI 
   	  <MuiThemeProvider theme = { theme }>
         <Header>
         </Header>
@@ -47,6 +49,7 @@ ReactDOM.render(
 	        <Route path="/signup" component={Signup} />
 	        <Route path="/account" component={Account} />
 	        <Route path="/plants" component={Plants} />
+          <Route path="/zipcode" component={Zipcode} />
 			<Route component={Error} />      
 		</Switch>
 	  </div>
