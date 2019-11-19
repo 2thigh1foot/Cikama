@@ -1,5 +1,4 @@
 import React from 'react';
-import HomepageImage from './HomepageImage' // need this for line 10's reference 
 
 function App() {
   return (

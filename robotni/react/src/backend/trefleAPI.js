@@ -9,20 +9,19 @@ const AUTH_TOKEN = process.env.TR_TOKEN;
 const url = 'https://trefle.io/api/plants/'
 // Just a test for now. This will change. Ideally this will communicate with the backend and feed info into database
 // rather than directly communicating with the frontend
-const common_name = "eggplant";
+const common_name = "daisy";
 
-const plant="";
+var plant="";
 // Query for the plant name
-axios.get(url + `?q=${common_name}`, {
-    response: 'json',
-    headers:{Authorization:AUTH_TOKEN}
-    })
-    .then(response => {
-        console.log(response.data);
-        plant = JSON.parse(response.data)
-    })
-    .catch(error =>{
-        console.log(error);
-    });
-    //This is a test of the API get request
-console.log(plant);
+
+    axios.get(url + `?q=${common_name}`, {
+        response: 'json',
+        headers:{Authorization:AUTH_TOKEN}
+        })
+        .then(response => {
+            console.log(response.data[0]);
+            
+        })
+        .catch(error =>{
+            console.log(error);
+        });

@@ -1,46 +1,89 @@
 import React, { Component }  from 'react';
+const axios = require('axios');
+
+require('dotenv').config();
 
 class Plants extends Component {
 	constructor(props){
         super(props);
 		this.state = {
-			loading: true,
+			loading: false,
 			name: null,
-			value: null
+			value: null,
+			data: null,
+			common_name: "daisy",
+			unsubmitted: true,
+			isDisplayingSearch: false
 		}
 	}
-	//This is will update the state of what text is in the textbox
-	handleChange(event){
-		this.setState({value: event.target.value});
+	enableResults(){
+		this.setState({
+			unsubmitted: false,
+			isDisplayingSearch: true
+		});
 	}
 	//Confirm the search
-	handleSubmit(event){
+	submitted(event){
+		alert(this.state.common_name);
+		this.enableResults();
+		this.setState({name: event.target.value});
 		alert('Searching for: ' + this.state.value);
+		this.setState({
+			common_name: this.state.value
+		});
 		event.preventDefault();
+		//API search for submitted plant
+		const url = "https://trefle.io/api/plants/"
+		const AUTH_TOKEN = process.env.TR_TOKEN;
+
+		axios.get(url + `?q=${this.state.common_name}`, {
+			response: 'json',
+			headers:{Authorization:AUTH_TOKEN}
+			})
+			.then(response => {
+				this.setState({
+					data: response.data[0],
+					loading: false
+				});
+				console.log(response.data[0]);
+				
+			})
+			.catch(error =>{
+				console.log(error);
+			});
+
 	}
-	//Connect the API to this front end page.
-	async componentDidMount(){
-		const url = "https://trefle.io/api/plants?token=ZCtuc2hVcERNNnNkZ0xaSEpBM2x1UT09"
-		const response = await fetch(url);
-		const data = await response.json();
-		console.log(data.name);
+	resultpage(){
+		return(
+			<div>
+            <h1>
+                Hello! You are seeing a test!
+            </h1>
+            </div>
+		);
 	}
 	//Just renders a simply textbox for search
-  render() {
-  	return (
-		<div className="centered">
-		<form onSubmit = {this.handleSubmit}>
-			<label>
-				What plant are you looking for?
+  	render() {
+  		var searchComp = (
+			<div className="centered">
+			<form>
+					<div>
+						<input type="plant" className="inputplant" placeholder='Enter Plant Name' required/>
+					</div>
 				<div>
-					<textarea value = {this.state.value} onChange={this.handleChange}/>
+				<button onClick={this.submitted} className="submitplant">Search</button>
 				</div>
-			</label>
-			<input type="submit" value="Search"/>
-		</form>
-		</div>
-  	);
-  }
+			</form>
+			</div>
+		  );
+		return(
+			<div>
+			{this.state.isDisplayingSearch? this.resultpage(): null}
+				{this.state.unsubmitted ? searchComp : null}
+
+			</div>
+		);
+  	}
 }
 
 export default Plants;

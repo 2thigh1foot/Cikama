@@ -27,7 +27,7 @@ connection.once('open', () =>{
 const plantsRouter = require('./routes/plants');
 const usersRouter = require('./routes/users');
 
-app.use('/plants', plantsRouter);
+app.use('/plantslib', plantsRouter);
 app.use('/users', usersRouter);
 
 

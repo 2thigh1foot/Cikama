@@ -4,7 +4,7 @@ const axios = require('axios');
 require('dotenv').config();
 
 const KEY = process.env.WEATHER_KEY;
-
+// Test zip code. Successful.
 const zip_code = "91711";
 
 const url = `https://api.openweathermap.org/data/2.5/weather?q=${zip_code}&units=metric&APPID=${KEY}`;
@@ -19,3 +19,4 @@ axios.get(url, {
     .catch(error=>{
         console.log(error);
     });
+    //TODO: Parse data and throw it into the database
