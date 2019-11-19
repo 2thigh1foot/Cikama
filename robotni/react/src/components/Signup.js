@@ -5,6 +5,9 @@ import React, { Component }  from 'react';
 import { Input } from '@material-ui/core';
 import { FormLabel } from '@material-ui/core';
 
+const sha256 = require("sha256");
+const DB_URL = 'http://localhost:5000';
+
 class Login extends Component {
 
   constructor(props){
@@ -17,8 +20,29 @@ class Login extends Component {
     }
    }
 
-  handleClick(event){
-    console.log("CLICK");
+  handleSubmit(event){
+    event.preventDefault();
+    
+    const password_plaintext = document.getElementById('password').value
+    const password_hash = sha256(password_plaintext);
+
+    // email: document.getElementById('email').value,
+    const data = {
+        email: document.getElementById('email').value,
+        username: document.getElementById('username').value,
+        password_hash: password_hash,
+        zipcode: document.getElementById('zipcode').value
+    }
+    console.log(data);
+    fetch(DB_URL + '/users/add', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    // document.alert("hello");
     // var apiBaseUrl = "http://localhost:4000/api/";
     // var self = this;
     // var payload={
@@ -50,11 +74,15 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="centered">
-        <p><Input label="email" type="text" name="email" id="email" placeholder="Enter email"></Input></p>
+
+      <div class="centered">
+      <form onSubmit={this.handleSubmit}>
+        <p><Input label="email" type="text" name="email" id="email" placeholder="Enter email" value="kate@gmail.com"></Input></p>
         <p><Input label="username" type="text" name="username" id="username" placeholder="Enter username"></Input></p>
-        <p><Input label="password" type="text" name="password" id="password" placeholder="Enter password"></Input></p>
-        <p><Input label="zipcode" type="text" name="zipcode" id="zipcode" placeholder="Enter zipcode"></Input></p>
+        <p><Input label="password" type="text" name="password" id="password" placeholder="Enter password" value="password123daf"></Input></p>
+        <p><Input label="zipcode" type="text" name="zipcode" id="zipcode" placeholder="Enter zipcode" value="91763"></Input></p>
+        <button>Submit</button>
+      </form>
       </div>
     );
   }

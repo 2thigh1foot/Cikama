@@ -83,7 +83,7 @@ class Plants extends Component {
 
 			</div>
 		);
-  	}
+	}
 }
 
 export default Plants;
