@@ -34,6 +34,7 @@ class Login extends Component {
         zipcode: document.getElementById('zipcode').value
     }
     console.log(data);
+    //allows the signup to communicate with the database backend
     fetch(DB_URL + '/users/add', {
       method: 'POST',
       headers: {
@@ -77,10 +78,10 @@ class Login extends Component {
 
       <div class="centered">
       <form onSubmit={this.handleSubmit}>
-        <p><Input label="email" type="text" name="email" id="email" placeholder="Enter email" value="kate@gmail.com"></Input></p>
+        <p><Input label="email" type="text" name="email" id="email" placeholder="Enter email"></Input></p>
         <p><Input label="username" type="text" name="username" id="username" placeholder="Enter username"></Input></p>
-        <p><Input label="password" type="text" name="password" id="password" placeholder="Enter password" value="password123daf"></Input></p>
-        <p><Input label="zipcode" type="text" name="zipcode" id="zipcode" placeholder="Enter zipcode" value="91763"></Input></p>
+        <p><Input label="password" type="text" name="password" id="password" placeholder="Enter password"></Input></p>
+        <p><Input label="zipcode" type="text" name="zipcode" id="zipcode" placeholder="Enter zipcode"></Input></p>
         <button>Submit</button>
       </form>
       </div>
