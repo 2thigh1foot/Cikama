@@ -34,10 +34,9 @@ const theme = createMuiTheme({
    }
 });
 
-
+// Theme from Material UI
 ReactDOM.render(
   <Router>
-  	// theme from material UI 
   	  <MuiThemeProvider theme = { theme }>
         <Header>
         </Header>

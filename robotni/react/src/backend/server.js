@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded())
 
 //The initial connection to our Mongo Atlas server
-const uri = process.env.ATLAS_URI;
+const uri = process.env.MAX_ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true});
 const connection = mongoose.connection;
 

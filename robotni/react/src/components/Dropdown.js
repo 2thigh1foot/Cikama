@@ -81,7 +81,11 @@ export default function CustomizedMenus() {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
-      >
+      > 
+        <StyledMenuItem>
+          <ListItemText onClick={handleNav()} primary="Home" />
+        </StyledMenuItem>
+
         <StyledMenuItem>
           <ListItemText onClick={handleNav()} primary="Plants" />
         </StyledMenuItem>
