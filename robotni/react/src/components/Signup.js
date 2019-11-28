@@ -34,6 +34,7 @@ class Login extends Component {
         zipcode: document.getElementById('zipcode').value
     }
     console.log(data);
+    //allows the signup to communicate with the database backend
     fetch(DB_URL + '/users/add', {
       method: 'POST',
       headers: {

@@ -14,13 +14,15 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({extended: true}))
 
 //The initial connection to our Mongo Atlas server
+//IMPORTANT: Make sure your IP is whitelisted to the cluster on Atlas
 const uri = process.env.MAX_ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true});
 const connection = mongoose.connection;
 
+connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', () =>{
   console.log("MongoDB database connection established successfully");
 });
