@@ -19,52 +19,88 @@ table td{
     text-align: center;
   }
   
-  /* Style the header links */
+/* Style the header links */
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+  color: white;
+}
+
+.header p {
+  text-align: center;
+}
+
+.form {
+  text-align: center;
+}
+
+.plantsearch {
+  width: 98%;
+  font-size: 24;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header span {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+.plantsearch {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: .875rem;
+  padding: 10px 0;
+  margin: 5px;
+}
+
+input:focus {
+    outline-color: #00604a;
+}
+
+input .btn-outline-primary {
+  color: black;
+}
+
+.btn-outline-primary {
+  color: #000;
+  border-color: #00604a;
+}
+
+.btn-outline-primary:hover {
+  border-color: #00604a;
+  background-color: #00604a;
+  color: white !important;
+}
+
+.table thead th {
+    border-bottom-color: #00604a;
+}
+
+.table td {
+  border-top: 1px solid #0060;
+  vertical-align: inherit;
+}
+  
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
   .header a {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
-    color: white;
+    float: none;
+    display: block;
+    text-align: left;
   }
-
-  .header p {
-    text-align: center;
-  }
-
-  .form {
-    text-align: center;
-  }
-
-  .plantsearch {
-    width: 98%;
-    font-size: 24;
-  }
-  
-  /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-  .header span {
-    font-size: 25px;
-    font-weight: bold;
-  }
-  
-  
-  /* Float the link section to the right */
   .header-right {
-    float: right;
+    float: none;
   }
-  
-  /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-  @media screen and (max-width: 500px) {
-    .header a {
-      float: none;
-      display: block;
-      text-align: left;
-    }
-    .header-right {
-      float: none;
-    }
-  }
+}

@@ -4,12 +4,16 @@
     {% for plant in user_plants %}
     <div class="plant" id="plant{{plant['id']}}">
         <div class="plant-title">
-            <p>{{ plant["common_name"].title() }}</p>
-            <span>{{ plant["id"] }}</span>
-            <p><a @click='del_plant({{plant["id"]}})'>Remove Plant</a></p>
+            {% if plant["common_name"] %}
+            <p>Common Name: {{ plant["common_name"].title() }}</p>
+            {% else %}
+            <p>Scientific Name: {{ plant["scientific_name"].title() }}</p>
+            {% endif %}
+            <span>{{ plant["id"] }}</span> <br/>
+            <a class="btn btn-outline-primary" @click='del_plant({{plant["id"]}})'>Remove Plant</a><br/>
+            {{ plant }}
         </div>
         <div>
-            {{ plant }}
         </div>
     </div>
 {% endfor %}

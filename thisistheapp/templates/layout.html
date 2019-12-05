@@ -22,7 +22,7 @@
             <a href="{{ url_for('login') }}">Log in</a>
             <a href="{{ url_for('register') }}">Register</a>
             {% else %}
-            <a href="{{ url_for('profile', current_user=current_user) }}">My Plants</a>
+            <a href="{{ url_for('profile') }}">My Plants</a>
             <a href="{{ url_for('logout') }}">Log out</a>
             {% endif %}
         </div>

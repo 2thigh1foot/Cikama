@@ -1,4 +1,15 @@
 {% extends "layout.html" %}
-
+{% block style %}
+.jumbotron {
+    background-image: url({{ url_for('static', filename="jumbotron_bg.png") }});
+    background-size: cover;
+    background-repeat: no-repeat
+}
+{% endblock %}
 {% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    </div>
+</div>
 {% endblock %}

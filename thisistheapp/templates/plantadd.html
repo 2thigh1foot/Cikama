@@ -1,23 +1,9 @@
 {% extends "layout.html" %}
-{% block style %}
-.plantsearch {
-    box-sizing: border-box;
-    width: 100%;
-    font-size: .875rem;
-    padding: 10px 0;
-    margin: 5px;
-  }
-  .btn-outline-primary:hover {
-    background-color: #00604a;
-    color: white;
-  }
-  
-{% endblock %}
 {% block body %}
 <div id="app">
     <input class="plantsearch" type="text" v-model="entry" placeholder="Search a plant">
     <div>
-        <table class="table text-center">
+        <table class="table table-striped text-center">
             <thead>
                 <tr>
                     <th>ID</th>

@@ -28,13 +28,13 @@ login_manager.login_view = "login"
 
 class RegisterForm(FlaskForm):
     email      = StringField("Email",            validators=[Email()])
-    username   = StringField("User",             validators=[Length(min=5)])
+    username   = StringField("Username",         validators=[Length(min=5)])
     zipcode    = IntegerField("Zipcode",         )
     password   = PasswordField("Password",       validators=[InputRequired(),EqualTo('confirm',message='Passwords must match')])
     confirm    = PasswordField("Confirm Password")
 
 class LoginForm(FlaskForm):
-    username   = StringField("User")
+    username   = StringField("Username")
     password   = PasswordField("Password")
 
 class Users:
@@ -119,11 +119,11 @@ def login():
         user = users.find_one({'username': form.username.data})
 
         if user is None:
-            return render_template("login.html",form=form,message="Invalid username")
+            return render_template("login.html",form=form, message="Invalid username")
 
         user_obj = Users(user)
         if not user_obj.check_password(form.password.data):
-            return render_template("login.html",form=form,message="Invalid password")
+            return render_template("login.html",form=form, message="Invalid password")
         
         login_user(user_obj, remember=True)
         return redirect("/profile")
@@ -208,13 +208,14 @@ def delplant(plant_id):
     users.update_one(q, { "$pull": {"plants": int(plant_id)}})
 
     return jsonify({"message":"successfully removed plant", "error": False})
-    
+
 def setup():
     global plantList
     # Use the pickled file to make plantData js file if it hasn't
     plantList = pickle.load( open("trefle/all_plants.p","rb"))
     # Remove species for now
     plantList = [x for x in plantList if not "family_common_name" in x]
+    plantList = [x for x in plantList if x["complete_data"] == True]
     plantObj = {}
 
     for plant in plantList:
