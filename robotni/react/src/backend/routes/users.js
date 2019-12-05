@@ -27,12 +27,12 @@ router.route('/add').post((req, res) => {
 
 
     const newUser = new User({email, username, password_hash, zipcode, plants});
+    console.log(newUser);
 
     newUser.save()
-        .then(() => res.json('User added!'))
+        .then(() => res.status(200).json({message: "User created"}))
         .catch( (err) => { 
-            console.log(err);
-            res.status(400).json('Error: ' + err);
+            res.status(400).json({message: "failure", errors: err});
         });
 });
 

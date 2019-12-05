@@ -12,4 +12,8 @@ package-lock.json
 .ds_store
 .DS_STORE
 
+# All the data. My god
+*.p
+all_plants.json
+
 __pycache__

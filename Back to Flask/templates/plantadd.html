@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div id="app">
+    <input style="width: 100%" type="text" v-model="entry" placeholder="Search a plant">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Common Name</th>
+                    <th>Scientific Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="value in plant_data">
+                    <td v-if="value.id">[[value.id]]</td>
+                    <td v-else>-</td>
+                    <td v-if="value.common_name">[[title(value.common_name)]]</td>
+                    <td v-else>-</td>
+                    <td v-if="value.scientific_name">[[value.scientific_name]]</td>
+                    <td v-else>-</td>
+                    <td><a @click="add_plant(value.id)">Add Plant</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+var app = new Vue({
+    el: "#app",
+    data: {
+        entry: "",
+        plant_data: []
+    },
+    methods: {
+        get_results: function() {
+            if (!this.entry) return;
+            var xhr = new XMLHttpRequest();
+            var self = this;
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    var results = JSON.parse(this.responseText);
+                    self.plant_data = results;
+                }
+            }
+
+            xhr.open("POST", "/query?value="+encodeURI(this.entry), true);
+            xhr.send();
+        },
+
+        add_plant: function(id) {
+            var xhr = new XMLHttpRequest();
+            var self = this;
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log("Value:",this.responseText);
+                }
+            }
+
+            xhr.open("POST", "/addplant/"+id, true);
+            xhr.send();
+        },
+
+        title: function(name) {
+            var split_name = name.split(" ");
+            for(var i = 0; i < split_name.length; i++) {
+                split_name[i] = split_name[i].substring(0,1).toUpperCase() + split_name[i].substring(1);
+            }
+            return split_name.join(" ");
+
+        }
+    },
+    watch: {
+        entry: function(oldEntry, newEntry) {
+            this.get_results();
+        }
+    },
+    delimiters: ["[[","]]"]
+})
+</script>
+{% endblock %}
