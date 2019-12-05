@@ -1,17 +1,32 @@
 {% extends "layout.html" %}
+{% block style %}
+img {
+    position: relative;
+    width:  80%;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+{% endblock %}
 {% block body %}
 <div id="app">
     {% for plant in user_plants %}
     <div class="plant" id="plant{{plant['id']}}">
-        <div class="plant-title">
-            {% if plant["common_name"] %}
-            <p>Common Name: {{ plant["common_name"].title() }}</p>
-            {% else %}
-            <p>Scientific Name: {{ plant["scientific_name"].title() }}</p>
-            {% endif %}
-            <span>{{ plant["id"] }}</span> <br/>
-            <a class="btn btn-outline-primary" @click='del_plant({{plant["id"]}})'>Remove Plant</a><br/>
-            {{ plant }}
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>{{ plant["common_name"].title() }}</th>
+                    <th><a class="btn btn-outline-primary" @click='del_plant({{plant["id"]}})'>Remove Plant</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><img src="{{plant['images'][0]['url']}}"/></tr>
+                <tr>Scientific Name: {{ plant["scientific_name"].title() }}</tr>
+                <tr>Plant ID: {{ plant["id"] }}</tr>
+                <tr>{{ plant }}</tr>
+            </tbody>
+         </table>
         </div>
         <div>
         </div>
