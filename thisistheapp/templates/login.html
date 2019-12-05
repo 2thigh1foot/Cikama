@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ message }}
+<div class="form">
+    <h1>Login</h1>
+    <form method="POST" action="/login">
+        {{ form.csrf_token }}
+        <p>
+            Username<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <input type="submit" value="Login">
+    </form>
+</div>
+{% endblock %}

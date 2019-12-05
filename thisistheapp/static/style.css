@@ -1,7 +1,20 @@
+html {
+  font-size: 18px;
+}
+
+body {
+  background-color: #f7f8abe3;
+}
+
+table td{
+  color: #000;
+}
+
 /* Style the header with a grey background and some padding */
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #00604a;
+    font-size: .875rem;
     padding: 20px 10px;
     text-align: center;
   }
@@ -16,24 +29,28 @@
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
+    color: white;
+  }
+
+  .header p {
+    text-align: center;
   }
 
   .form {
     text-align: center;
   }
+
+  .plantsearch {
+    width: 98%;
+    font-size: 24;
+  }
   
   /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-  .header a.logo {
+  .header span {
     font-size: 25px;
     font-weight: bold;
   }
   
-  
-  /* Style the active/current link*/
-  .header a.active {
-    background-color: dodgerblue;
-    color: white;
-  }
   
   /* Float the link section to the right */
   .header-right {

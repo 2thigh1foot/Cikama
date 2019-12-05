@@ -1,15 +1,29 @@
 {% extends "layout.html" %}
-
+{% block style %}
+.plantsearch {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: .875rem;
+    padding: 10px 0;
+    margin: 5px;
+  }
+  .btn-outline-primary:hover {
+    background-color: #00604a;
+    color: white;
+  }
+  
+{% endblock %}
 {% block body %}
 <div id="app">
-    <input style="width: 100%" type="text" v-model="entry" placeholder="Search a plant">
+    <input class="plantsearch" type="text" v-model="entry" placeholder="Search a plant">
     <div>
-        <table>
+        <table class="table text-center">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Common Name</th>
                     <th>Scientific Name</th>
+                    <th>Add Plant?</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +34,7 @@
                     <td v-else>-</td>
                     <td v-if="value.scientific_name">[[value.scientific_name]]</td>
                     <td v-else>-</td>
-                    <td><a @click="add_plant(value.id)">Add Plant</a></td>
+                    <td><a class="btn btn-outline-primary" @click="add_plant(value.id)">Add Plant</a></td>
                 </tr>
             </tbody>
         </table>

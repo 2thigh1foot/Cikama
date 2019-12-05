@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id="app">
+    {% for plant in user_plants %}
+    <div class="plant" id="plant{{plant['id']}}">
+        <div class="plant-title">
+            <p>{{ plant["common_name"].title() }}</p>
+            <span>{{ plant["id"] }}</span>
+            <p><a @click='del_plant({{plant["id"]}})'>Remove Plant</a></p>
+        </div>
+        <div>
+            {{ plant }}
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
+{% block script %}
+<script>
+var app = new Vue({
+    el: "#app",
+    data: {
+        entry: "",
+        plant_data: []
+    },
+    methods: {
+        get_results: function() {
+            if (!this.entry) return;
+            var xhr = new XMLHttpRequest();
+            var self = this;
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    var results = JSON.parse(this.responseText);
+                    self.plant_data = results;
+                }
+            }
+
+            xhr.open("POST", "/query?value="+encodeURI(this.entry), true);
+            xhr.send();
+        },
+
+        del_plant: function(id) {
+            var xhr = new XMLHttpRequest();
+            var self = this;
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    var results = JSON.parse(this.responseText);
+                    if (!results.error) {
+                        var r = confirm("Are you sure you would like to remove this?");
+                        if (r) {
+                            document.getElementById('plant'+id).remove();
+                        }
+                    }
+                }
+            }
+
+            xhr.open("POST", "/delplant/"+id, true);
+            xhr.send();
+        },
+
+        title: function(name) {
+            var split_name = name.split(" ");
+            for(var i = 0; i < split_name.length; i++) {
+                split_name[i] = split_name[i].substring(0,1).toUpperCase() + split_name[i].substring(1);
+            }
+            return split_name.join(" ");
+
+        }
+    },
+    watch: {
+        entry: function(oldEntry, newEntry) {
+            this.get_results();
+        }
+    },
+    delimiters: ["[[","]]"]
+})
+</script>
+{% endblock %}

@@ -42,7 +42,7 @@ class Users:
         self.id       = obj["_id"]
         self.username = obj["username"]
         self.email    = obj["email"]
-        self.zipcode  = obj["zipcode"]
+        self.zipcode  = obj.get("zipcode", 91711)
         self.password = obj["password"]
         self.plants   = obj.get("plants", [])
 
@@ -193,6 +193,21 @@ def addplant(plant_id):
     users.update_one(q, { "$push": {"plants": int(plant_id)}})
 
     return jsonify({"message":"success", "error": False})
+    
+@app.route("/delplant/<plant_id>", methods=["POST"])
+def delplant(plant_id):
+    if not current_user.is_authenticated:
+        return jsonify({"message": "Not logged in.", "error": True})
+    
+    try:
+        int(plant_id)
+    except:
+        return jsonify({"message": "Invalid plant id", "error": True})
+
+    q = {"username": current_user.username }
+    users.update_one(q, { "$pull": {"plants": int(plant_id)}})
+
+    return jsonify({"message":"successfully removed plant", "error": False})
     
 def setup():
     global plantList
