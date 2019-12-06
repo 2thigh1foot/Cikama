@@ -22,18 +22,19 @@ img {
     {% for plant in user_plants %}
     <div class="container" id="plant{{plant['id']}}">
         <div class="row">
-            <div class="col-sm-8"><strong>{{ plant["common_name"].title() }}</strong></div>
-            <div class="col-sm-4"><a class="btn btn-outline-primary" @click='del_plant({{plant["id"]}})'>Remove Plant</a></div>
+            <div class="col-sm-4">{{ plant["scientific_name"].title() }} (ID: {{ plant["id"] }})</div>
+            <div class="col-sm-6 text-center"><strong>{{ plant["common_name"].title() }}</strong></div>
+            <div class="col-sm-2"><a class="btn btn-outline-primary" @click='del_plant({{plant["id"]}})'>Remove Plant</a></div>
         </div>
         <div class="row">
-            <div class="col-sm-6"><img class="tableImg" src="{{plant['images'][1]['url']}}"/></div>
+            <div class="col-sm-6">
+                {% if 'images' in plant.keys() %}
+                <img class="tableImg" src="{{plant['images'][0]['url']}}"/></div>
+                {% else %}
+                <img class="tableImg" src="{{ url_for('static', filename='placeholder.png') }}"/></div>
+                {% endif %}
             <div class="col-sm-6">
                 <table class="table">
-                    <tr>
-                        <td>Scientific Name: {{ plant["scientific_name"].title() }}</td>
-                        <td>Plant ID: {{ plant["id"] }}</td>
-                    </tr>
-                    {% for l in plant['images'] %}
                     <tr>
                         <td>Lifespan:</td>
                         <td>{{ plant['main_species']['specifications']['lifespan'] }}</td>
@@ -66,7 +67,6 @@ img {
                         <td>Soil pH Range:</td>
                         <td>{{ plant['main_species']['growth']['ph_minimum'] }} - {{ plant['main_species']['growth']['ph_maximum'] }}</td>
                     </tr>
-                    {% endfor %}
                 </table>
             </div>
         </div>
