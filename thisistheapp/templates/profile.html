@@ -8,30 +8,70 @@ img {
     background-size:     cover;
 }
 
+.tableImg {
+    max-width: 100%;
+}
+
+.container {
+    margin: 10px;
+}
+
 {% endblock %}
 {% block body %}
 <div id="app">
     {% for plant in user_plants %}
-    <div class="plant" id="plant{{plant['id']}}">
-        <table class="table text-center">
-            <thead>
-                <tr>
-                    <th>{{ plant["common_name"].title() }}</th>
-                    <th><a class="btn btn-outline-primary" @click='del_plant({{plant["id"]}})'>Remove Plant</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><img src="{{plant['images'][0]['url']}}"/></tr>
-                <tr>Scientific Name: {{ plant["scientific_name"].title() }}</tr>
-                <tr>Plant ID: {{ plant["id"] }}</tr>
-                <tr>{{ plant }}</tr>
-            </tbody>
-         </table>
+    <div class="container" id="plant{{plant['id']}}">
+        <div class="row">
+            <div class="col-sm-8"><strong>{{ plant["common_name"].title() }}</strong></div>
+            <div class="col-sm-4"><a class="btn btn-outline-primary" @click='del_plant({{plant["id"]}})'>Remove Plant</a></div>
         </div>
-        <div>
+        <div class="row">
+            <div class="col-sm-6"><img class="tableImg" src="{{plant['images'][1]['url']}}"/></div>
+            <div class="col-sm-6">
+                <table class="table">
+                    <tr>
+                        <td>Scientific Name: {{ plant["scientific_name"].title() }}</td>
+                        <td>Plant ID: {{ plant["id"] }}</td>
+                    </tr>
+                    {% for l in plant['images'] %}
+                    <tr>
+                        <td>Lifespan:</td>
+                        <td>{{ plant['main_species']['specifications']['lifespan'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Best Time to Grow:</td>
+                        <td>{{ plant['main_species']['specifications']['growth_period'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Minimum Temperature:</td>
+                        <td>{{ plant['main_species']['growth']['temperature_minimum']['deg_f'] }}F</td>
+                    </tr>
+                    <tr>
+                        <td>Shade Tolerance:</td>
+                        <td>{{ plant['main_species']['growth']['shade_tolerance'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Toxicity:</td>
+                        <td>{{ plant['main_species']['specifications']['toxicity'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Minimum Water Needed:</td>
+                        <td>{{ plant['main_species']['growth']['precipitation_minimum']['inches'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Watering Limit:</td>
+                        <td>{{ plant['main_species']['growth']['precipitation_maximum']['inches'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Soil pH Range:</td>
+                        <td>{{ plant['main_species']['growth']['ph_minimum'] }} - {{ plant['main_species']['growth']['ph_maximum'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
-{% endfor %}
+        {% endfor %}
 </div>
 {% endblock %}
 {% block script %}

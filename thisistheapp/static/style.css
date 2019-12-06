@@ -92,6 +92,22 @@ input .btn-outline-primary {
   border-top: 1px solid #0060;
   vertical-align: inherit;
 }
+
+img {
+  position: relative;
+  width:  80%;
+  background-position: 50% 50%;
+  background-repeat:   no-repeat;
+  background-size:     cover;
+}
+
+.tableImg {
+  max-width: 100%;
+}
+
+.container {
+  margin: 10px;
+}
   
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 500px) {
